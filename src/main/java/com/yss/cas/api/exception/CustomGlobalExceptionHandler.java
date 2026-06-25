@@ -14,6 +14,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class CustomGlobalExceptionHandler {
 
+    @ExceptionHandler(ValidationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public CustomErrorResponse handleValidationException(ValidationException ex) {
+        log.warn("Exception message {}", ex.getMessage());
+        log.warn("Exception caused by", ex.getCause());
+        return new CustomErrorResponse("Error Validation occured");
+    }
+
     @ExceptionHandler(CustomResponseException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public CustomErrorResponse handleCustomException(Exception ex) {
