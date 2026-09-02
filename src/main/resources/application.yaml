@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: cas.api
+
+app:
+  kafka:
+    topic-replicas: ${KAFKA_TOPIC_REPLICAS:1}
+  outbox:
+    batch-size: 100
+    poll-interval-ms: 1000
+  verification-code:
+#    pepper: ${VERIFICATION_CODE_PEPPER}   # required, no default on purpose
+    pepper: dG9wU2VjcmV0WWFsY29CYWJ5Q29tZU9uTGFkeUxldHNHb1BhcnR5WWVhaA   # required, no default on purpose topSecretYalcoBabyComeOnLadyLetsGoPartyYeah
+    ttl: PT15M
+    max-attempts: 5
+    resend-delay: PT60S
